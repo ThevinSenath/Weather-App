@@ -1,0 +1,24 @@
+<section
+  style="
+    background-image: url('../../assets/images/Headerbg.png');
+    background-size: cover;
+  "
+>
+  <div style="text-align: center;">
+    <h1 class="text-white p-4">Weather App</h1>
+  </div>
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div>
+        <div class="row mt-3">
+          <div class="col-md-6" *ngFor="let weather of weather">
+            <app-weather-card
+              class="m-2"
+              [weatherList]="weather"
+            ></app-weather-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

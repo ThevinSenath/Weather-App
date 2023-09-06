@@ -1,0 +1,54 @@
+<div class="card">
+  <div
+    class="card-body"
+    [ngStyle]="{ 'background-color': getBackgroundColor() }"
+    style="background-image: url('../../assets/images/clouds.png')"
+  >
+    <div class="row">
+      <div class="col">
+        <!-- <div class="d-flex align-items-center"> -->
+        <div class="d-flex flex-column text-center mt-5 mb-4">
+          <div class="flex-grow-1" style="font-size: 1rem">
+            <div>
+              <span class="ms-1 text-white" style="font-size: 2rem"
+                >{{ city_name }} , {{ country }}</span
+              >
+            </div>
+            <div>
+              <span class="ms-1 text-white"> {{ curr_time }} </span>
+            </div>
+            <div>
+              <span class="ms-1 text-white"> {{ description }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-flex flex-column text-center mt-5 mb-4">
+          <h6 class="display-4 mb-0 font-weight-bold text-white">
+            {{ temp }}°C
+          </h6>
+          <div>
+            <span class="ms-1 text-white"> Temp Min: {{ temp_min }} </span>
+            <br />
+            <span class="ms-1 text-white"> Temp Max: {{ temp_max }} </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer" style="background-color: rgb(42, 41, 41)">
+    <div class="row">
+      <div class="col p-4 text-white">
+        Pressure: {{ pressure }} <br />
+        Humidity: {{ humidity }} <br />
+        Visibility: {{ visibility }}
+      </div>
+      <div class="col p-4 text-white">
+        {{ wind_speed }} m/s {{ wind_deg }} Degree
+      </div>
+      <div class="col p-4 text-white">Sunrise: {{ sunrise}} <br> Sunset: {{sunset}}</div>
+    </div>
+  </div>
+</div>
