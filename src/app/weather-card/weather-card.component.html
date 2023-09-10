@@ -1,23 +1,27 @@
-<div class="card">
+<div (click)="navigateToCard(weatherList)" class="card">
   <div
     class="card-body"
     [ngStyle]="{ 'background-color': getBackgroundColor() }"
-    style="background-image: url('../../assets/images/clouds.png')"
+    style="background-image: url('../../assets/images/clouds.png'); background-size: cover;"
   >
+
+  <div class="d-flex" *ngIf="hasBackArrow">
+    <h6 class="flex-grow-1"><mat-icon (click)="goBack()">arrow_back</mat-icon></h6>
+  </div>
     <div class="row">
       <div class="col">
-        <!-- <div class="d-flex align-items-center"> -->
-        <div class="d-flex flex-column text-center mt-5 mb-4">
+        <div class="flex-column text-center mt-5 mb-4">
           <div class="flex-grow-1" style="font-size: 1rem">
             <div>
-              <span class="ms-1 text-white" style="font-size: 2rem"
-                >{{ city_name }} , {{ country }}</span
+              <span class="ms-1 text-white" style="font-size: 1.3rem"
+                >{{ city_name }}, {{ country }}</span
               >
             </div>
             <div>
               <span class="ms-1 text-white"> {{ curr_time }} </span>
             </div>
             <div>
+            <img src="{{ icon_url }}" alt="weather-icon"/>
               <span class="ms-1 text-white"> {{ description }} </span>
             </div>
           </div>
@@ -40,15 +44,28 @@
 
   <div class="card-footer" style="background-color: rgb(42, 41, 41)">
     <div class="row">
-      <div class="col p-4 text-white">
+      <div class="col p-4 text-white text-center">
         Pressure: {{ pressure }} <br />
         Humidity: {{ humidity }} <br />
         Visibility: {{ visibility }}
       </div>
-      <div class="col p-4 text-white">
+      <div class="col p-4 text-white text-center">
+        <div class="align-center">
+        <div style="width: 30px; margin: 5px;" className="flex">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24">
+                <g>
+                    <path fill="none" d="M0 0h24v24H0z"/>
+                    <path
+                        d="M1.923 9.37c-.51-.205-.504-.51.034-.689l19.086-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.475.553-.717.07L11 13 1.923 9.37zm4.89-.2l5.636 2.255 3.04 6.082 3.546-12.41L6.812 9.17z"
+                        fill="#ffffff"/>
+                </g>
+            </svg>
+        </div>
+        </div>
         {{ wind_speed }} m/s {{ wind_deg }} Degree
       </div>
-      <div class="col p-4 text-white">Sunrise: {{ sunrise}} <br> Sunset: {{sunset}}</div>
+      <div class="col p-4 text-white text-center">Sunrise: {{ sunrise}} <br> Sunset: {{sunset}}</div>
     </div>
   </div>
 </div>

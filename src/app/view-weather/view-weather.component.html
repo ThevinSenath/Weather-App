@@ -1,1 +1,18 @@
-<p>view-weather works!</p>
+<section
+  style="
+    background-image: url('../../assets/images/bg.png');
+    background-size: cover;
+  "
+>
+  <app-header></app-header>
+  <div class="container p-5" style="height: 100%">
+    <div class="row justify-content-center align-items-center">
+      <app-weather-card
+        *ngFor="let weather of weather"
+        class="m-2"
+        [weatherList]="weather"
+        [hasBackArrow]="true"
+      ></app-weather-card>
+    </div>
+  </div>
+</section>
