@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { WeatherService } from "../_services/weather.service";
-import { forkJoin } from 'rxjs';
 import { COLOUR_ARRAY } from '../_constants/constants';
 import { LocalStorageHandlerService } from '../_utils/local-storage-handler.service';
 
@@ -27,24 +26,40 @@ export class DashboardComponent {
 
     getWeatherList() {
         if (this.city_data) {
-            const dataList = this.city_data.List;
             let temp_arr: any = [];
-            const observables = [];
 
-            let index = 0;
+            const cached_data = this.localStorageHandlerService.getCachedData();
 
-            for (let city of dataList) {
-                observables.push(
-                    this.weatherService.getWeather(city.CityCode).subscribe((Response: any) => {
-                        Response.list[0].colour = COLOUR_ARRAY[index % dataList.length];
-                        index++;
-                        temp_arr.push(Response.list[0]);
-                    })
-                );
+            if (cached_data) {
+                if (!this.localStorageHandlerService.isExpired(cached_data)) {
+                    for (let weather of cached_data) {
+                        temp_arr.push(weather);
+                    }
+                    this.weather_data = temp_arr;
+                } else {
+                    this.getInitialData(temp_arr);
+                }
+            } else {
+                this.getInitialData(temp_arr);
             }
-
-            this.weather_data = temp_arr;
         }
+    }
+
+    getInitialData(temp_arr: any) {
+        let index = 0;
+        const dataList = this.city_data.List;
+        for (let city of dataList) {
+            this.weatherService.getWeather(city.CityCode).subscribe((Response: any) => {
+                Response.list[0].colour = COLOUR_ARRAY[index % dataList.length];
+                index++;
+                temp_arr.push(Response.list[0]);
+            })
+        }
+
+        this.weather_data = temp_arr;
+        setTimeout(() => {
+            this.localStorageHandlerService.setCachedData(temp_arr);
+        }, 3000);
     }
 
 }
