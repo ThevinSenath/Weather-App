@@ -2,8 +2,9 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
 
-body {
+html body {
   background-image: url('assets/images/bg.png');
   background-size: cover;
   background-repeat: no-repeat;
+  min-height: 100vh;
 }

@@ -25,9 +25,10 @@ export class DashboardComponent {
     }
 
     getWeatherList() {
-        if (this.city_data) {
-            let temp_arr: any = [];
 
+        if (this.city_data) {
+
+            let temp_arr: any = [];
             const cached_data = this.localStorageHandlerService.getCachedData();
 
             if (cached_data) {
@@ -46,8 +47,10 @@ export class DashboardComponent {
     }
 
     getInitialData(temp_arr: any) {
+
         let index = 0;
         const dataList = this.city_data.List;
+
         for (let city of dataList) {
             this.weatherService.getWeather(city.CityCode).subscribe((Response: any) => {
                 Response.list[0].colour = COLOUR_ARRAY[index % dataList.length];
@@ -57,6 +60,7 @@ export class DashboardComponent {
         }
 
         this.weather_data = temp_arr;
+
         setTimeout(() => {
             this.localStorageHandlerService.setCachedData(temp_arr);
         }, 3000);
