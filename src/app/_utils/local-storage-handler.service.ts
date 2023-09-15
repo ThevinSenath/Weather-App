@@ -9,7 +9,6 @@ export class LocalStorageHandlerService {
     constructor() { }
 
     setCachedData(weatherData: any) {
-        weatherData[0].fetched_time = Date.now();
         localStorage.setItem('weatherData', JSON.stringify(weatherData));
     }
 
@@ -21,9 +20,9 @@ export class LocalStorageHandlerService {
         return null;
     }
 
-    isExpired(cached_data: any){
+    isExpired(fetched_time: number, exp_duration: number){
         const currentTime = Date.now();
-        return (currentTime - cached_data[0].fetched_time >= 5 * 2 * 1000);
+        return (currentTime - fetched_time >= exp_duration * 60 * 1000);
     };
 
 }

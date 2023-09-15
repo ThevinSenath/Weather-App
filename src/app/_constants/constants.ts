@@ -8,3 +8,14 @@ export const COLOUR_ARRAY = [
     "#662d91", 
     "#F9629F"
 ]
+
+export const EXPIRATION_DATA = [
+    0,          //Colombo
+    1,          //Tokyo
+    2,          //Liverpool
+    3,          //Paris
+    4,          //Sydney
+    5,          //Boston
+    6,          //Shanghai
+    7           //Oslo
+]

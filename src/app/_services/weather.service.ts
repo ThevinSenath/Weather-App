@@ -19,7 +19,6 @@ export class WeatherService {
             console.log("Error fetching weather data:", error);
             throw error;
         }
-
     }
 
     public getJsonData(filePath: string) {
@@ -29,7 +28,6 @@ export class WeatherService {
             console.log("Error extracting city data:", error);
             throw error;
         }
-
     }
 
 }
